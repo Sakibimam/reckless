@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - NEXT_PUBLIC_QUICKNODE_ENDPOINT=${NEXT_PUBLIC_QUICKNODE_ENDPOINT}
+      - ML_API_URL=http://ml-api:8000
+    depends_on:
+      - ml-api
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+
+  ml-api:
+    build: ./ml-models
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./ml-models:/app
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
