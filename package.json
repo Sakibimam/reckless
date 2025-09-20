@@ -2,6 +2,7 @@
   "name": "ai-powered-defi-yield-optimizer",
   "version": "0.1.0",
   "private": true,
+  "author": "sakib imam",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
