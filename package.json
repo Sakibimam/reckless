@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "author": "sakib imam",
+  "contributors": [
+    "sakib imam <sakibimam886@gmail.com>"
+  ],
   "scripts": {
     "build": "next build",
     "dev": "next dev",
